@@ -132,3 +132,6 @@ dist
 # IDE
 .vscode/
 .idea/
+
+# Generated PDF output
+*.pdf
