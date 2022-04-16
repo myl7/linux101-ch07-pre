@@ -184,6 +184,133 @@ ninja：更好的多线程编译支持
 
 综述
 
+不着力于具体代码，而是分析一些外围架构
+
+语法：官方文档、《Python 学习手册（第五版）》，注意 3.5-3.8 的新语法
+
+---
+
+# Python 语言开发
+
+解释器 python
+
+解释器（Interpreter）：源代码 -> 字节码 -> PVM
+
+python2、python3
+
+---
+
+# Python 语言开发
+
+包管理器 pip
+
+```shell
+# 安装 Python 3 和 Python 3 的 pip。对于 Python 2 和 3 间的纠纠缠缠，我们将在之后讲解。
+$ sudo apt install python3 python3-pip
+
+# 测试一下看看，是否能够正常使用它们。
+# 请保证在 `python` 和 `pip` 后有 3 这个数字。这也是历史遗留问题。
+$ python3 -V
+$ pip3 -V
+
+# 暂时忽略以下两条指令，我们会在之后讲解。
+$ python3 -m venv venv
+$ source venv/bin/activate
+(venv)$ ls
+venv
+
+# 安装一个 Python 包 a、b，以及 a、b 依赖的 Python 包。
+(venv)$ pip3 install a b
+
+# 卸载一个 Python 包 b。注意：这不会删除之前一起安装的包 b 的依赖。
+(venv)$ pip3 uninstall b
+```
+
+---
+
+# Python 语言开发
+
+Python 依赖管理
+
+pip 功能太基础
+
+---
+
+# Python 语言开发
+
+requirements.txt
+
+```# requirements.txt
+django
+pytest>=3.0.0
+pytest-cov==1.0.0
+```
+
+```bash
+pip3 install -r requirements.txt
+```
+
+---
+
+# Python 语言开发
+
+setuptools：setup.py
+
+打包（packaging）
+
+---
+
+# Python 语言开发
+
+其他的：pip-tools、pipenv……
+
+pip-tools：增加 requirements.dev
+
+pipenv：类 npm lock
+
+---
+
+# Python 语言开发
+
+Virtualenv
+
+pip / Python 依赖体系不允许同时安装不同版本的同一个包
+
+局部包
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+deactivate
+```
+
+---
+
+# Python 语言开发
+
+Python 的版本
+
+Python 2 已在 2020 年初正式宣告停止维护
+
+Python 2 与 3：最好看做两种不同的编程语言（语法层面、设计层面、API 层面）
+
+推荐：>=3.8（Ubuntu 20.04 默认）
+
+Python 3.x 兼容性
+
+---
+
+# Python 语言开发
+
+Python 的其他实现
+
+官方：CPython
+
+- JPython：将 Python 编译到 Java 字节码，由 JVM 来运行
+- PyPy：相较于 CPython，实现了 JIT（just in time）编译器，性能有极大地提升
+- Cython：引入了额外的语法和严密的类型系统，性能也有很大提升
+- Numba：将 Python 编译到机器码，从而直接运行，性能也不错
+
 ---
 
 # 附录
