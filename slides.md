@@ -3,7 +3,7 @@
 
 # Linux 101 Ch07：<br>Linux 上的编程
 
-Linux Coding
+Coding on Linux
 
 Speaker：明宇龙
 
@@ -25,19 +25,15 @@ Speaker：明宇龙
 
 综述
 
-近乎系统级的支持
+悠远而健全的支持：OS API，ABI，FFI 等
 
-带有图形界面的 IDE 的编译往往是封装了各种提供命令行接口的编译器 -> 直接调用这些提供命令行接口的编译器进行编译
+图形界面 IDE 封装了提供命令行接口编译器
 
----
-
-# C 语言开发
-
-编译器实现
+编译器实现：
 
 - Linux: gcc（by GNU）、clang（by LLVM）
-- Windows: cl.exe（by Microsoft）-> Visual C++ (MSVC)
-- Mac OS X: 也是 gcc、clang
+- Windows: cl.exe（by Microsoft）-> Visual C++ & MSVC
+- Mac OS X: （作为 BSD-based，同由 UNIX 而来）也是 gcc、clang
   - gcc on Mac OS X 其实是 clang
 
 ---
@@ -63,8 +59,6 @@ $ gcc main.c -o main
 $ ./main
 Hello World!
 ```
-
-- Rule of Silence: When a program has nothing surprising to say, it should say nothing.
 
 ---
 
@@ -117,6 +111,8 @@ $ ./main
 Hello World!
 ```
 
+`#ifndef ... #define ... #endif`：只 `#include` 一次防止重复声明，= `#pragma once`（后者支持已较广泛）
+
 ---
 
 # C 语言开发
@@ -124,10 +120,12 @@ Hello World!
 编译步骤
 
 - 预处理（preprocessing）、编译（compilation）、汇编（assembly）、链接（linking）
-- cpp、cc1、ar、ld
+- cpp、cc1、ar、ld，整合在 gcc 套装下
 - 处理 # 开头的预编译指令、将源码编译为汇编代码、将汇编代码编译为二进制代码、组合众多二进制代码生成可执行文件
 - gcc -E、gcc -S、gcc -c、gcc
 - main.c -> main.i -> main.s -> main.o -> main
+
+不像直接 gcc 解决，一步步调用 cpp、cc1、ar、ld 需要额外的参数配置
 
 ---
 
@@ -163,11 +161,13 @@ Hello World!
 
 其他的构建工具：CMake，ninja……
 
-“套娃”：用一个程序来生成构建所需的配置
+CMake：构建工具的构建工具
 
-Modern CMake、vcpkg
+Modern CMake
 
 ninja：更好的多线程编译支持
+
+vcpkg
 
 ---
 
@@ -232,7 +232,7 @@ venv
 
 Python 依赖管理
 
-pip 功能太基础
+pip、setuptools 功能太基础
 
 ---
 
@@ -250,6 +250,8 @@ pytest-cov==1.0.0
 pip3 install -r requirements.txt
 ```
 
+可以生成（`pip freeze` 及其他依赖管理实现生成）也可以手写
+
 ---
 
 # Python 语言开发
@@ -264,9 +266,30 @@ setuptools：setup.py
 
 其他的：pip-tools、pipenv……
 
-pip-tools：增加 requirements.dev
+pip-tools：
 
-pipenv：类 npm lock
+- 增加 requirements.dev，用 requirements.dev 生成 requirements.txt
+- 简单直接
+- 基于 requirements.txt，依然稍显简陋
+
+pipenv：
+
+- 类 npm lock，更健全
+- 完成度和工业中的稳定性尚有待证明
+
+pyenv：
+
+- 管理 python 解释器版本
+- 可配合不管理解释器版本的依赖管理实现使用
+
+Poetry：
+
+- 类 npm lock
+
+pdm：
+
+- 非 virtualenv-based、全新的依赖管理体系
+- 支持有限，但已可使用
 
 ---
 
@@ -274,7 +297,7 @@ pipenv：类 npm lock
 
 Virtualenv
 
-pip / Python 依赖体系不允许同时安装不同版本的同一个包
+pip / Python 依赖体系（不像 npm）不允许同时安装不同版本的同一个包
 
 局部包
 
@@ -283,6 +306,8 @@ python3 -m venv venv
 source venv/bin/activate
 deactivate
 ```
+
+关键功能通过环境变量实现
 
 ---
 
@@ -297,6 +322,8 @@ Python 2 与 3：最好看做两种不同的编程语言（语法层面、设计
 推荐：>=3.8（Ubuntu 20.04 默认）
 
 Python 3.x 兼容性
+
+“Modern” Python
 
 ---
 
