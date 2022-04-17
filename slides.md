@@ -1,7 +1,7 @@
 <!-- Copyright (c) 2022 ustclug -->
 <!-- SPDX-License-Identifier: CC-BY-SA-4.0 -->
 
-# Linux 101 Ch07：<br>Linux 上的编程
+# Linux 101 第三课：<br>Linux 上的编程
 
 Coding on Linux
 
